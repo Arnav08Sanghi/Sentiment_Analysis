@@ -11,5 +11,10 @@ x_value = file["review"]
 y_value = file["sentiment"]
 
 
+x_value['text'] = tokenization.make_numerical_vector(x_value['text'])
+
+y_value['text'] = np.where(y_value['text'] == 'positive', '1', '0')
+
+
 print(x_value)
 print(y_value)
