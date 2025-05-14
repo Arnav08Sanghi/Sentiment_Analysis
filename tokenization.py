@@ -18,13 +18,11 @@ def tokenize_words (text):
     list_stopwords = set(stopwords.words('english'))
     tokens = [word for word in tokens if word.startswith("#") or word.startswith("http") or word.lower() not in list_stopwords]
 
+    #return make_numerical_vector(tokens)
     return tokens
+
 
 
 def make_numerical_vector (text):
 
-    
-
-
-
-    return tokens
+    return text
