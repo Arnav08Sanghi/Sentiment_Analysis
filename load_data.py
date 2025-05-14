@@ -1,6 +1,14 @@
+
+
+
+
+# REMOVE FILE AS NO USE FOR IT
+
+
+
+
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
 
 from tokenization import tokenize_words, make_numerical_vector
 
@@ -9,7 +17,7 @@ def loading_data(path):
     #file = pd.read_csv("C:\\Users\\arnav\\OneDrive\\Desktop\\Coding Projects\\AI_PROJ_ONE\\IMDB_Dataset.csv")
     
     file ["tokens"] = np.where(tokenize_words(file["review"]))
-    x_value = np.where()
+    x_value = np.where(make_numerical_vector(path))
     
     #x_value = np.where(tokenize_words(file["review"]))
     #y_value = file["sentiment"]
