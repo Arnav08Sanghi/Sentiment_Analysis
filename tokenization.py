@@ -8,7 +8,7 @@ nltk.download('stopwords')
 
 
 # Tokenization pattern: Keep hashtags (#word) and URLs together, split everything else normally
-def make_numerical_vector(text):
+def tokenize_words (text):
     tokens = text
 
     # Remove punctuation (except in hashtags and URLs, which are preserved by regex)
@@ -17,5 +17,14 @@ def make_numerical_vector(text):
     # Remove stopwords
     list_stopwords = set(stopwords.words('english'))
     tokens = [word for word in tokens if word.startswith("#") or word.startswith("http") or word.lower() not in list_stopwords]
+
+    return tokens
+
+
+def make_numerical_vector (text):
+
+    
+
+
 
     return tokens
