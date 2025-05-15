@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
 
 # Download required resources
 nltk.download('punkt')
@@ -32,9 +33,14 @@ def make_numerical_vector (path):
     file = pd.read_csv(path)
 
     file ["tokens"] = np.where(tokenize_words(file["review"]))
-    file ["y-values"] = np.where(file["sentiment"] == 'positive', 1, 0)
+    #file ["y-values"] = np.where(file["sentiment"] == 'positive', 1, 0)
 
     vectorizer = TfidfVectorizer(max_features = 100)
     movies_tfidf_matrix = vectorizer.fit_transform(file["tokens"])
+    y_value = np.where(file["sentiment"] == 'positive', 1, 0)
 
-    return
+
+    x_train, x_test, y_train, y_test = train_test_split(movies_tfidf_matrix, y_value, test_size=0.2, random_state = 18)
+
+
+    return x_train, x_test, y_train, y_test
