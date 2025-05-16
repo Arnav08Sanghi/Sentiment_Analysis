@@ -3,6 +3,7 @@ import string
 import pandas as pd
 import numpy as np
 from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from joblib import dump
@@ -16,7 +17,7 @@ nltk.download('stopwords')
 
 # Tokenization pattern: Keep hashtags (#word) and URLs together, split everything else normally
 def tokenize_words (text):
-    tokens = text
+    tokens = word_tokenize(text)
 
     # Remove punctuation (except in hashtags and URLs, which are preserved by regex)
     tokens = [word for word in tokens if word not in string.punctuation]
