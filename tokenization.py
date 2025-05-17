@@ -5,6 +5,7 @@ import numpy as np
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
+from nltk.stem import WordNetLemmatizer
 from sklearn.model_selection import train_test_split
 from joblib import dump
 
@@ -24,7 +25,9 @@ def tokenize_words (text):
 
     # Remove stopwords
     list_stopwords = set(stopwords.words('english'))
-    tokens = [word for word in tokens if word.startswith("#") or word.startswith("http") or word.lower() not in list_stopwords]
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(word) for word in tokens if word.lower() not in list_stopwords and not word.startswith('#') and not word.startswith('http')]
+
 
     return tokens
 
@@ -41,8 +44,8 @@ def make_numerical_vector (path):
     print(y_value)
     file["tokens_joined"] = [" ".join(tokens) for tokens in file["tokens"]]
     vectorizer = TfidfVectorizer(
-                    max_features = 1000,
-                    #ngram_range=(1,2),
+                    max_features = 10000,
+                    ngram_range=(1,2), #Uniword and Biword 
                     min_df=5,
                     max_df=0.95)
     movies_tfidf_matrix = vectorizer.fit_transform(file["tokens_joined"])
