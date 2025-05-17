@@ -72,3 +72,9 @@ def make_numerical_vector (path):
 # #x_value = tokenization.make_numerical_vector(x_value)
 # #print(x_value)
 # #print(y_value)
+
+
+
+
+
+
