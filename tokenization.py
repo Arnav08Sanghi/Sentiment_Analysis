@@ -40,7 +40,7 @@ def make_numerical_vector (path):
     y_value = np.where(file["sentiment"] == 'positive', 1, 0)
     print(y_value)
     file["tokens_joined"] = [" ".join(tokens) for tokens in file["tokens"]]
-    vectorizer = TfidfVectorizer(max_features = 100)
+    vectorizer = TfidfVectorizer(max_features = 1000)
     movies_tfidf_matrix = vectorizer.fit_transform(file["tokens_joined"])
     print(movies_tfidf_matrix)
     dump(vectorizer, "tfidf_vectorizer")
