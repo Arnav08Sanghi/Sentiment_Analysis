@@ -35,12 +35,14 @@ def make_numerical_vector (path):
 
     file = pd.read_csv(path)
 
-    file ["tokens"] = np.where(tokenize_words(file["review"]))
-    #file ["y-values"] = np.where(file["sentiment"] == 'positive', 1, 0)
+    file["tokens"] = file["review"].apply(tokenize_words)
+    print(file["tokens"])
     y_value = np.where(file["sentiment"] == 'positive', 1, 0)
-
+    print(y_value)
+    file["tokens_joined"] = [" ".join(tokens) for tokens in file["tokens"]]
     vectorizer = TfidfVectorizer(max_features = 100)
-    movies_tfidf_matrix = vectorizer.fit_transform(file["tokens"])
+    movies_tfidf_matrix = vectorizer.fit_transform(file["tokens_joined"])
+    print(movies_tfidf_matrix)
     dump(vectorizer, "tfidf_vectorizer")
 
     x_train, x_test, y_train, y_test = train_test_split(movies_tfidf_matrix, y_value, test_size=0.2, random_state = 18)
@@ -54,7 +56,7 @@ def make_numerical_vector (path):
 # import numpy as np
 
 # from tokenization import tokenize_words, make_numerical_vector
-
+    #file ["y-values"] = np.where(file["sentiment"] == 'positive', 1, 0)
 # def loading_data(path):
 #     file = pd.read_csv(path)
 #     #file = pd.read_csv("C:\\Users\\arnav\\OneDrive\\Desktop\\Coding Projects\\AI_PROJ_ONE\\IMDB_Dataset.csv")
