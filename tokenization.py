@@ -12,6 +12,7 @@ from joblib import dump
 # Download required resources
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('wordnet')
 
 
 
