@@ -2,6 +2,7 @@ import nltk
 import string
 import pandas as pd
 import numpy as np
+import joblib
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -51,7 +52,7 @@ def make_numerical_vector (path):
                     max_df=0.95)
     movies_tfidf_matrix = vectorizer.fit_transform(file["tokens_joined"])
     print(movies_tfidf_matrix)
-    dump(vectorizer, "tfidf_vectorizer")
+    joblib.dump(vectorizer, "tfidf_vectorizer.pkl")
 
     x_train, x_test, y_train, y_test = train_test_split(movies_tfidf_matrix, y_value, test_size=0.2, random_state = 18)
 
