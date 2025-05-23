@@ -20,6 +20,3 @@ if Y_value_C_rbf == 1:
     print("Sentiment: Positive")
 else:
     print("Sentiment: Negative")
-
-# Optional: show transformed vector
-# print(X_input)
