@@ -8,7 +8,6 @@ from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem import WordNetLemmatizer
 from sklearn.model_selection import train_test_split
-from joblib import dump
 
 # Download required resources
 nltk.download('punkt')
