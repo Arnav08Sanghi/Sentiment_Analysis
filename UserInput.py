@@ -1,5 +1,6 @@
 import joblib 
 
+#Print out the instruction statements 
 print("SENTIMENT ANALYZER")
 user_input = input("Enter your statement here: ")
 
